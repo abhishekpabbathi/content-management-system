@@ -1,116 +1,165 @@
-# Content Management System
+# Content Management System (CMS)
 
-A full-stack Content Management System (CMS) built with the MERN stack. The project provides a secure content management platform and a dynamic public website powered by REST APIs instead of hardcoded data.
+A full-stack MERN-based Content Management System built from scratch to manage and deliver digital content through a separate Admin Dashboard and Public User application.
 
-## Overview
+The project allows admins to create and manage articles, while users can browse published content through a dynamic website powered by REST APIs.
 
-This project follows a decoupled architecture where content is managed through a dedicated CMS and consumed by a separate public frontend. It was built as Version 1 of a scalable CMS and is designed to support future enhancements such as block-based content, media management, and richer content types.
+---
 
-## Features
+# Project Overview
 
-- Administrator authentication
-- Content CRUD operations
-- Publish and draft workflow
-- Dynamic public content
-- Dashboard overview
-- Category management
-- Responsive user interface
-- REST API integration
+This project is a custom-built CMS application where content management and content consumption are separated.
 
-## Architecture
+Admins can manage website content without changing code, and users can access updated articles dynamically through the public platform.
 
-```
-content-management-system/
+---
 
-├── backend/
-│   ├── src/
-│   │   ├── controllers/
-│   │   ├── models/
-│   │   ├── routes/
-│   │   └── server.js
-│   └── package.json
-│
-├── admin-frontend/
-│   ├── src/
-│   └── package.json
-│
-├── public-frontend/
-│   ├── src/
-│   └── package.json
-│
-├── .gitignore
-└── README.md
-```
+# Features
 
-## Technology Stack
+## Admin Dashboard
 
-### Frontend
+Admins can:
 
-- React
-- Vite
-- Webpack
+- Login securely using JWT authentication
+- Create new articles
+- Edit existing articles
+- Delete articles
+- Manage draft and published content
+- Organize content using categories
+- Control content available on the public website
+
+
+## Public Website
+
+Users can:
+
+- Register and login
+- Browse published articles
+- View complete article details
+- Read dynamically loaded content
+- Access content through REST APIs
+
+---
+
+# Custom Feature Added
+
+## Article Sharing System
+
+Built an additional sharing feature to improve user engagement.
+
+Users can share articles directly through:
+
+- LinkedIn
+- WhatsApp
+- Twitter/X
+- Email
+- Copy article link
+
+This custom implementation allows users to easily distribute articles across different platforms.
+
+---
+
+# Tech Stack
+
+## Frontend
+
+- React.js
 - Tailwind CSS
 - Axios
 - React Router
 
-### Backend
+
+## Backend
 
 - Node.js
 - Express.js
-- MongoDB Atlas
-- Mongoose
+- REST APIs
 - JWT Authentication
 - bcrypt
 
-### Deployment
+
+## Database
+
+- MongoDB Atlas
+- Mongoose
+
+
+## Deployment
 
 - Vercel
 - Render
-- MongoDB Atlas
 - GitHub
 
-## Project Architecture
+---
+
+# Architecture
 
 ```
-               Public Frontend
-                      │
-                      ▼
-                REST API Layer
-                      │
-                      ▼
-              Express.js Backend
-                      │
-                      ▼
-                 MongoDB Atlas
-                      ▲
-                      │
-               Admin Frontend
+              Admin Dashboard
+                    |
+                    |
+                    ▼
+             Express REST API
+                    |
+                    |
+                    ▼
+              MongoDB Atlas
+                    ▲
+                    |
+                    |
+             Public Frontend
 ```
 
-## Current Scope
+---
 
-Version 1 includes:
+# Project Structure
 
-- Authentication
-- Content management
-- Dynamic frontend integration
-- REST APIs
-- Production deployment
+```
+content-management-system/
 
-## Future Improvements
+├── admin-frontend/
+│
+├── public-frontend/
+│
+├── backend/
+│
+└── README.md
+```
 
-- Block-based content editor
-- Media uploads
-- Rich text enhancements
-- Mathematical equation rendering
+---
+
+# Key Highlights
+
+- Built a complete MERN stack application from scratch
+- Designed separate Admin and User platforms
+- Implemented JWT authentication
+- Developed REST API-based content management
+- Created dynamic article publishing workflow
+- Added custom article sharing functionality
+- Deployed frontend and backend applications
+
+---
+
+# Future Improvements
+
+- Rich text editor
+- Media upload
 - Search and filtering
-- Docker support
 - Role-based permissions
+- Analytics dashboard
+- Docker support
 
-## Security
+---
 
-Sensitive configuration such as environment variables, database credentials, and deployment secrets are intentionally excluded from this repository.
+# Security
 
-## License
+Sensitive information such as environment variables, database credentials, and authentication secrets are not included in this repository.
 
-Developed as part of a Full Stack Engineering assignment.
+---
+
+# Author
+
+**Abhishek Pabbathi**
+
+GitHub:
+https://github.com/abhishekpabbathi
