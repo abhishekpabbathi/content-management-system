@@ -33,9 +33,7 @@ localStorage.setItem("user",JSON.stringify(res.data.user));
 
 setSuccess("Login successful. Redirecting...");
 
-setTimeout(()=>{
-navigate("/dashboard");
-},1000);
+navigate("/");
 
 }
 catch(err){

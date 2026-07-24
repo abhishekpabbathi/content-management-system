@@ -84,8 +84,6 @@ required
 {error&&<div className="error">{error}</div>}
 {success&&<div className="success">{success}</div>}
 
-{success&&<div className="success">{success}</div>}
-
 <button disabled={loading}>
 {loading?"Creating Account...":"Create Account"}
 </button>
