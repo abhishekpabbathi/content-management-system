@@ -1,6 +1,8 @@
 import React from "react";
-import {Routes,Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import ProtectedRoute from "./components/ProtectedRoute";
+
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -10,29 +12,96 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import ContentDetails from "./pages/ContentDetails";
 
-export default function App(){
+export default function App() {
+  return (
+    <>
+      <Navbar />
 
-return(
-<>
-<Navbar/>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
-<Routes>
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
 
-<Route path="/" element={<Home/>}/>
-<Route path="/login" element={<Login/>}/>
-<Route path="/register" element={<Register/>}/>
-<Route path="/dashboard" element={<Dashboard/>}/>
-<Route path="/content" element={<Content/>}/>
-<Route path="/content/:id" element={<ContentDetails/>}/>
-<Route path="/content/articles" element={<Content/>}/>
-<Route path="/content/pages" element={<Content/>}/>
-<Route path="/content/resources" element={<Content/>}/>
-<Route path="/about" element={<About/>}/>
-<Route path="/contact" element={<Contact/>}/>
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
 
-</Routes>
+        <Route
+          path="/content"
+          element={
+            <ProtectedRoute>
+              <Content />
+            </ProtectedRoute>
+          }
+        />
 
-</>
-);
+        <Route
+          path="/content/:id"
+          element={
+            <ProtectedRoute>
+              <ContentDetails />
+            </ProtectedRoute>
+          }
+        />
 
+        <Route
+          path="/content/articles"
+          element={
+            <ProtectedRoute>
+              <Content />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/content/pages"
+          element={
+            <ProtectedRoute>
+              <Content />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/content/resources"
+          element={
+            <ProtectedRoute>
+              <Content />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/about"
+          element={
+            <ProtectedRoute>
+              <About />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/contact"
+          element={
+            <ProtectedRoute>
+              <Contact />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </>
+  );
 }

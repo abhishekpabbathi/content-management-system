@@ -1,46 +1,48 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function Navbar(){
+export default function Navbar() {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
-const location = useLocation();
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
 
-const isActive = (path) => {
-    return location.pathname === path ? "active" : "";
-};
+  return (
+    <nav className="flex items-center justify-between px-12 py-5 border-b bg-white">
+      <Link to="/" className="text-2xl font-bold text-indigo-700">
+        ContentCMS
+      </Link>
 
-return(
-<nav className="navbar">
+      {!token ? (
+        <div className="flex gap-6">
+          <Link to="/login" className="font-semibold text-indigo-600">
+            Login
+          </Link>
 
-<h2>
-    <Link to="/">ContentCMS</Link>
-</h2>
+          <Link to="/register" className="font-semibold text-indigo-600">
+            Register
+          </Link>
+        </div>
+      ) : (
+        <div className="flex gap-8">
+          <Link to="/">Home</Link>
+          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/content">Content</Link>
+          <Link to="/about">About</Link>
+          <Link to="/contact">Contact</Link>
 
-<div className="nav-links">
-
-<Link className={isActive("/")} to="/">
-    Home
-</Link>
-
-<Link className={isActive("/dashboard")} to="/dashboard">
-    Dashboard
-</Link>
-
-<Link className={isActive("/content")} to="/content">
-    Content
-</Link>
-
-<Link className={isActive("/about")} to="/about">
-    About
-</Link>
-
-<Link className={isActive("/contact")} to="/contact">
-    Contact
-</Link>
-
-</div>
-
-</nav>
-);
-
+          <button
+            onClick={logout}
+            className="font-semibold text-red-600"
+          >
+            Logout
+          </button>
+        </div>
+      )}
+    </nav>
+  );
 }
