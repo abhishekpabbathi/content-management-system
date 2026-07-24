@@ -12,23 +12,32 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="flex items-center justify-between px-12 py-5 border-b bg-white">
-      <Link to="/" className="text-2xl font-bold text-indigo-700">
+    <nav className="flex items-center justify-between px-10 py-5 border-b bg-white">
+      <Link
+        to="/"
+        className="text-2xl font-bold text-indigo-700"
+      >
         ContentCMS
       </Link>
 
       {!token ? (
-        <div className="flex gap-6">
-          <Link to="/login" className="font-semibold text-indigo-600">
+        <div className="flex items-center gap-6">
+          <Link
+            to="/login"
+            className="font-semibold text-gray-700 hover:text-indigo-600"
+          >
             Login
           </Link>
 
-          <Link to="/register" className="font-semibold text-indigo-600">
+          <Link
+            to="/register"
+            className="px-5 py-2 rounded-lg bg-indigo-600 text-white font-semibold hover:bg-indigo-700"
+          >
             Register
           </Link>
         </div>
       ) : (
-        <div className="flex gap-8">
+        <div className="flex items-center gap-7">
           <Link to="/">Home</Link>
           <Link to="/dashboard">Dashboard</Link>
           <Link to="/content">Content</Link>
@@ -37,7 +46,7 @@ export default function Navbar() {
 
           <button
             onClick={logout}
-            className="font-semibold text-red-600"
+            className="text-red-600 font-semibold"
           >
             Logout
           </button>

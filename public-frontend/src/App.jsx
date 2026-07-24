@@ -1,5 +1,6 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -13,21 +14,40 @@ import Contact from "./pages/Contact";
 import ContentDetails from "./pages/ContentDetails";
 
 export default function App() {
+  const location = useLocation();
+  const token = localStorage.getItem("token");
+
+  const hideNavbar =
+    location.pathname === "/login" ||
+    location.pathname === "/register";
+
   return (
     <>
-      <Navbar />
+      {!hideNavbar && token && <Navbar />}
 
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
 
         <Route
           path="/"
           element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
+            token ? (
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            ) : (
+              <Navigate to="/login" replace />
+            )
           }
+        />
+
+        <Route
+          path="/login"
+          element={token ? <Navigate to="/" replace /> : <Login />}
+        />
+
+        <Route
+          path="/register"
+          element={token ? <Navigate to="/" replace /> : <Register />}
         />
 
         <Route
@@ -101,6 +121,12 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route
+          path="*"
+          element={<Navigate to={token ? "/" : "/login"} replace />}
+        />
+
       </Routes>
     </>
   );
