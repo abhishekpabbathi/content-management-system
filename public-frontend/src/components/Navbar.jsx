@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export default function Navbar() {
@@ -11,20 +11,21 @@ export default function Navbar() {
     navigate("/login");
   };
 
+  const linkClass = ({ isActive }) =>
+    isActive ? "nav-link nav-link-active" : "nav-link";
+
   return (
-    <nav className="flex items-center justify-between px-10 py-5 border-b bg-white">
-      <Link to="/" className="text-2xl font-bold text-indigo-700">
-        ContentCMS
-      </Link>
+    <nav className="navbar">
+      <Link to="/" className="navbar-brand">ContentCMS</Link>
 
-      <div className="flex items-center gap-7">
-        <Link to="/">Home</Link>
-        <Link to="/dashboard">Dashboard</Link>
-        <Link to="/content">Content</Link>
-        <Link to="/about">About</Link>
-        <Link to="/contact">Contact</Link>
+      <div className="navbar-links">
+        <NavLink to="/" end className={linkClass}>Home</NavLink>
+        <NavLink to="/dashboard" className={linkClass}>Dashboard</NavLink>
+        <NavLink to="/content" className={linkClass}>Content</NavLink>
+        <NavLink to="/about" className={linkClass}>About</NavLink>
+        <NavLink to="/contact" className={linkClass}>Contact</NavLink>
 
-        <button onClick={handleLogout} className="text-red-600 font-semibold">
+        <button onClick={handleLogout} className="navbar-logout">
           Logout
         </button>
       </div>
